@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run: npm i
       - run: npm test
-  deploy_staging:
+  deploy-staging:
     docker: 
       - image: node:8.9.4
     working_directory: ~/app
@@ -17,7 +17,7 @@ jobs:
       - run: ls
       - run: npm run build
       - run: echo "Production deploy"
-  deploy_production:
+  deploy-production:
     docker: 
       - image: node:8.9.4
     working_directory: ~/app
@@ -31,16 +31,15 @@ workflows:
   test-and-deploy:
     jobs:
       - test
-      - deploy_staging:
+      - deploy-staging:
           requires:
             - test
           filters:
             branches:
-              only:
-                - master
+              only: master
             tags:
               ignore: /.*/
-      - deploy_production:
+      - deploy-production:
           requires:
             - test
           filters:

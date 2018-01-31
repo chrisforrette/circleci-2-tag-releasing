@@ -4,8 +4,8 @@
   "description": "Testing with tag releasing in CircleCI",
   "main": "index.js",
   "scripts": {
-    "build": "echo \"Hella building!\"",
-    "test": "echo \"Hella testing!\""
+    "build": "cowsay Hella building!",
+    "test": "cowsay Hella testing!"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/chrisforrette/circleci-2-tag-releasing#readme",
   "dependencies": {
-    "hapi": "^17.2.0"
+    "cowsay": "^1.2.1"
   }
 }
