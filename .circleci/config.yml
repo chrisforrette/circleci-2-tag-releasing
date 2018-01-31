@@ -6,26 +6,44 @@ jobs:
     working_directory: ~/app
     steps:
       - checkout
+      - restore_cache:
+          key: dependencies-v1-{{ checksum "package.json" }}
       - run: npm i
       - run: npm test
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-v1-{{ checksum "package.json" }}
   deploy-staging:
     docker: 
       - image: node:8.9.4
     working_directory: ~/app
     steps:
       - checkout
-      - run: ls
+      - restore_cache:
+          key: dependencies-v1-{{ checksum "package.json" }}
+      - run: npm i
       - run: npm run build
-      - run: echo "Production deploy"
+      - run: echo "Staging deploy"
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-v1-{{ checksum "package.json" }}
   deploy-production:
     docker: 
       - image: node:8.9.4
     working_directory: ~/app
     steps:
       - checkout
-      - run: ls
+      - restore_cache:
+          key: dependencies-v1-{{ checksum "package.json" }}
+      - run: npm i
       - run: npm run build
       - run: echo "Production deploy"
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-v1-{{ checksum "package.json" }}
 workflows:
   version: 2
   test-and-deploy:
