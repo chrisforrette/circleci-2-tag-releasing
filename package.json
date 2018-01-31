@@ -1,6 +1,6 @@
 {
   "name": "circleci-2-tag-releasing",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Testing with tag releasing in CircleCI",
   "main": "index.js",
   "scripts": {
