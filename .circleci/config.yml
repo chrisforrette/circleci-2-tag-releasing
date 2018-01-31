@@ -1,0 +1,43 @@
+version: 2
+jobs:
+  test:
+    docker: 
+      - image: node:8.9.4
+    working_directory: /home/ubuntu/coffeenotes-app
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm test
+  deploy_staging:
+    docker: 
+      - image: node:8.9.4
+    working_directory: /home/ubuntu/coffeenotes-app
+    steps:
+      - checkout
+      - run: npm run build
+      - run: echo "Production deploy"
+  deploy_production:
+    docker: 
+      - image: node:8.9.4
+    working_directory: /home/ubuntu/coffeenotes-app
+    steps:
+      - checkout
+      - run: npm run build
+      - run: echo "Production deploy"
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - test
+      - deploy_staging:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - deploy_production:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/

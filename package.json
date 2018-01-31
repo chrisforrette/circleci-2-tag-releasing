@@ -1,0 +1,23 @@
+{
+  "name": "circleci-2-tag-releasing",
+  "version": "1.0.0",
+  "description": "Testing with tag releasing in CircleCI",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo \"Hella building!\"",
+    "test": "echo \"Hella testing!\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisforrette/circleci-2-tag-releasing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisforrette/circleci-2-tag-releasing/issues"
+  },
+  "homepage": "https://github.com/chrisforrette/circleci-2-tag-releasing#readme",
+  "dependencies": {
+    "hapi": "^17.2.0"
+  }
+}
