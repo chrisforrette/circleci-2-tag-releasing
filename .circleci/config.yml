@@ -49,6 +49,9 @@ workflows:
   test-and-deploy:
     jobs:
       - test
+          filters:
+            tags:
+              only: /.*/
       - deploy-staging:
           requires:
             - test
